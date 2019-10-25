@@ -1,0 +1,53 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<form method="post" action="{:url('admin/changepasswd/update')}">
+
+		
+        <div class="row form-group">
+            
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">原密码</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <input type="password" class="form-control" name="old_password">
+            </div>
+        </div>
+
+        <div class="row form-group">
+            
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">新密码</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <input type="password" class="form-control" name="password">
+            </div>
+        </div>
+        <div class="row form-group">
+            
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">确认密码</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <input type="password" class="form-control" name="password_confirm">
+            </div>
+        </div>
+        
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class="form-control-label"></label>
+            </div>
+            <div class="col-12 col-md-10">
+               <button class="btn btn-info">确定</button>
+            </div>
+        </div>
+	</form>
+
+    {if session('success')} 
+        <div class="row offset-md-1">
+            <div class="col-10 alert alert-success">
+                操作成功
+            </div>
+        </div>
+     {/if}
+{/block}

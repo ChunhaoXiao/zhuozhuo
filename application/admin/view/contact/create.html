@@ -1,0 +1,43 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<form method="post" action="{:url('admin/contact/save')}" enctype="multipart/form-data">
+
+		
+        {foreach $datas as $v}
+    		<div class="row form-group">
+                <div class="col col-md-1">
+                    <label for="textarea-input" class=" form-control-label">{$v->label}</label>
+                </div>
+                <div class="col-12 col-md-10">
+                   {if in_array($v->type, ['text', 'email', 'number'])}
+                        <input type="{$v->type}" name="{$v->name}" class="form-control" {$v->type == 'number' ? 'step=0.0000001' : ''} value="{$contact[$v->name]?? ''}">
+                    {elseif $v->type='file' /}
+                        <input type="file" name="{$v->name}" class="form-control-file">
+                        {if !empty($contact->map)}
+                            <img src="/uploads/{$contact->map}" width="50" height="50" class="mt-1">
+                        {/if}
+                    {/if}
+                </div>
+            </div>
+        {/foreach}
+
+        
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class="form-control-label"></label>
+            </div>
+            <div class="col-12 col-md-10">
+               <button class="btn btn-info">确定</button>
+            </div>
+        </div>
+	</form>
+
+    {if session('success')} 
+        <div class="row offset-md-1">
+            <div class="col-10 alert alert-success">
+                操作成功
+            </div>
+        </div>
+     {/if}
+{/block}

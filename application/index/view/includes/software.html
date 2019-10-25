@@ -1,0 +1,33 @@
+<div class="container-fluid pt-5 mb-3" style="height: 500px; margin-top:80px;background:url('/uploads/{$config.softbg??''}'); background-size: 100%;background-repeat: no-repeat;">
+	<h2 class="text-center mt-3 text-white">软件简介</h2>
+	<div class="mb-5 mark"></div>
+	{php}
+		$soft = \app\common\model\Software::with('category')->select();
+	{/php}
+	<div class="w-50 mx-auto d-flex flex-row justify-content-between">
+		{foreach $soft as $v}
+			<div class="love-box">
+				<div class="d-flex flex-column align-items-center justify-content-center h-50">
+					<img src="/uploads/{$v->icon}" width="40" height="40" class="my-auto">
+					
+				</div>
+				<div class="h-50 d-flex flex-column align-items-center justify-content-center">
+					<h2 class="text-white">{$v->category->name}</h2>
+					<p class="text-white p-1 w-100">{$v->note}</p>
+				</div>
+			</div>
+		{/foreach}
+
+		<!-- <div class="love-box">
+			<div class="d-flex flex-column align-items-center justify-content-center h-50">
+				<img src="/uploads/logo.png" width="40" height="40" class="my-auto">
+				
+			</div>
+			<div class="h-50 d-flex flex-column align-items-center justify-content-center">
+				<h2 class="text-white">爱心值</h2>
+				<p class="text-white p-1">卓客街将企业利润的一定比例以赠送爱心值的方式分配给消费者</p>
+			</div>
+		</div> -->
+
+	</div>
+</div>

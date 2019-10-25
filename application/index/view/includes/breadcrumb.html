@@ -1,0 +1,23 @@
+<div style="height: 50px;line-height: 50px;">
+	{php}
+		$breads = [];
+		if(!empty($config))
+		{
+			$breads = $config->bread;
+		}
+		
+
+		if(!empty($extra_bread))
+		{
+			$breads = array_merge($breads, $extra_bread);
+		}
+	{/php}
+
+    {if(!empty($breads))}
+		{foreach $breads as $k => $v}
+			<a href="{$v['link']}">{$v.name}</a> {if $k < count($breads)-1} >> {/if}
+		{/foreach}
+    {/if}
+</div>
+
+<div class="bread-line"></div>

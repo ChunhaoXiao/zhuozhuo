@@ -1,0 +1,25 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		{include file="includes/breadcrumb" bread="软件简介" /}
+	
+		<h3 class="text-center mt-3">软件简介</h3>
+		<div class="title-line"></div>
+		<div class="w-50 mx-auto d-flex flex-row justify-content-around mt-5">
+			{foreach $datas as $v}
+				<a href="{:url('index/soft/read', ['id' => $v->id])}" class="link-button">{$v->category->name}</a>
+			{/foreach}
+		</div>
+
+		<div class="d-flex flex-row justify-content-around mt-5">
+			{foreach $datas as $v}
+				<a href="{:url('index/soft/read', ['id' => $v->id])}" class="d-flex flex-column">
+					<img src="/uploads/{$v->picture}" width="400" height="250">
+				    <div style="background-color: #B2854A; font-weight: 600;color:white; height: 60px; line-height: 60px;text-align: center; font-size: 30px">{$v->category->name}</div>
+				</a>
+			{/foreach}
+		</div>
+	</div>
+	
+{/block}

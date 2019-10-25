@@ -1,0 +1,8 @@
+{if strtolower(request()->controller()) == 'index'}
+  {include file="header" /}
+{else /}
+  {include file="includes/sub_header"}
+{/if}
+{block name="content"}{/block}
+
+{include file="footer" /}

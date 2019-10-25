@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+
+   <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+
+    <title>{$config->page_title??''}-{$config.title??''}</title>
+    <style type="text/css">
+
+      a{
+        color:black;
+      }
+      a:hover{
+        color: black;
+        text-decoration: none;
+      }
+
+      body {
+	      font-family: inherit;
+        font-size: 14px;
+        color: #6C7077;
+      }
+    </style>
+  </head>
+  <body>
+    
+  <div class="container-fluid bg-dark">
+    <div class="d-flex flex-row w-75  mx-auto justify-content-between top-header">
+        <div>欢迎来到卓客街</div>
+        <div class="d-flex w-25 justify-content-end">
+            <div class="mr-2">设为首页</div>
+            <div class="mr-2">Ξ</div>
+            <div><a class="text-white" href="javascript:;" οnclick="javascript:window.external.addFavorite('http://ceshi.weixinkefu.com','{$config->title}')">加入收藏</a></div>
+        </div>
+    </div>
+  </div> <!--顶部导航结束-->
+
+  <div class="w-75 d-flex flex-row justify-content-between mx-auto mt-4  align-items-center"><!--logo和导航-->
+
+    <div class="d-flex align-items-center">
+      <a href="{:url('index/index/index')}"><img src="/uploads/{$config.logo??''}" class="logo"></a>
+      <h3 class="ml-3">{$config.logo_text}</h3>
+    </div>
+
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light">
+         
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              
+              {foreach $navs as $v}
+                <li class="nav-item">
+                  <a style="font-size: 16px" class="nav-link {if strtolower(request()->controller()) == $v->controller} active-menus text-white{/if}" href="/index.php/index/{$v->link}">{$v->name} <span class="sr-only">(current)</span></a>
+                </li>
+              {/foreach}
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </div> <!--logo和导航结束-->
+
+  <div class="container-fluid carousel slide p-0" style="margin-top: 25px" data-ride="carousel">
+
+   <!--  <a href="{:url('soft/index')}" class="link-button text-white" style="margin-top: 18%;margin-left: 12%; height: 40px;line-height: 40px">read more</a> -->
+   <div class="carousel-inner">
+      
+      {foreach $config->banner as $k => $v}
+      <div class="carousel-item {if $k == 0} active {/if}">
+        <img height="500" src="/uploads/{$v}" class="d-block w-100" alt="...">
+      </div>
+      {/foreach}
+
+      <div class="banner-link">
+        <h3 style="color: white; font-size: 35px;font-weight: 500">{$config.swiper_text_top}</h3>
+        <div style="color: white; font-size: 35px;font-weight: 500">{$config.swiper_text_bottom}</div>
+
+        <a style="top: 70px; width: 130px;height: 36px; line-height: 34px; display: block; position: relative;background-color: #B2894B;font-size: 16px;padding: 2px 20px;color: white;text-align: center;font-weight: 600"  href="{:url('soft/index')}">查看详情</a>
+      </div>
+   </div>
+  </div>
+
+    <!-- <div class="row bg-white p-5">
+
+      <div class="col-md-2 text-center">
+        <img src="/uploads/logo.png" class="logo">
+      </div>
+      
+    </div>
+
+    <div class="row bg-white" style="height: 500px">
+        <div class="col-md-12"  style="background-image: url('uploads/logo.png'); background-repeat: no-repeat;background-size: 100%">
+        </div>
+    </div> -->
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

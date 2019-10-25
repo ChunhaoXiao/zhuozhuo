@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h2 class="text-center">新闻资讯</h2>
+    <div class="mark"></div>
+	{php}
+		$news = \app\common\model\News::top()->select();
+	{/php}
+	<div class="w-75 mx-auto mt-4 row">
+		<!-- <div class="row"> -->
+
+			<div class="col-md-8">
+				{foreach $news as $v}
+				<div class="mb-2 border-bottom pb-2">
+					<div class="font-weight-bold w-100">
+						<a class="news-title" href="{:url('index/news/read', ['id' => $v->id])}"> {$v->title}</a>
+					</div>
+
+					<div>{$v->create_time}</div>
+
+					<div>{$v->summery}</div>
+				</div>
+				{/foreach}
+
+				<div class="link-button mt-3">
+					<a class="text-white" href="{:url('index/news/index')}">查看更多</a>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<img src="/uploads/{$config.index_news_picture}" width="100%" height="500px" class="ml-auto">
+			</div>
+	    <!-- </div> -->
+	</div>
+</div>	

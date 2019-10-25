@@ -1,0 +1,27 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		
+		{include file="includes/breadcrumb" bread="$bread_nav" /}
+	
+		
+		
+
+		<div class="row mt-5">
+			<div class="col-md-3"><img src="/uploads/{$data->picture}" width="100%" height="250"></div>
+			<div class="col-auto pr-1"><h3>{$data->category->name}</h3></div>
+			<div class="col-md-6 text-left">
+				<div style="height:30px; border-bottom: 1px solid #E6E6E6; width:80%"></div>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col">
+				{$data->description}
+			</div>
+		</div>
+
+		<div class="mt-5">{if !empty($data->prev)} 上一页：<a href="{:url('index/soft/read', ['id' => $data->prev->id])}">{$data->prev->category->name}</a> {else /} 下一页 ： <a href="{:url('index/soft/read', ['id' => $data->next->id])}">{$data->next->category->name}</a> {/if}</div>
+	</div>
+{/block}

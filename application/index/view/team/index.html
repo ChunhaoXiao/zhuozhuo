@@ -1,0 +1,16 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		{include file="includes/breadcrumb" bread="团队介绍" /}
+	
+		<h3 class="text-center mt-3">团队介绍</h3>
+		<div class="title-line"></div>
+		<div class="p-2 mt-3">
+			{$data->content??''}
+		</div>
+
+		
+	</div>
+	
+{/block}

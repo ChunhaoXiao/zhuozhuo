@@ -1,0 +1,19 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		{include file="includes/breadcrumb" bread="公司概况" /}
+	
+		<h3 class="text-center mt-3">公司概况</h3>
+		<div class="title-line"></div>
+		<div class="p-2 mt-3">
+			{$data->content}
+		</div>
+		<div class="d-flex flex-row mt-5 justify-content-between">
+			{foreach $data->pictures as $v}
+				<img src="/uploads/{$v}" style="width: 33%; height: 300px">
+			{/foreach}
+		</div>
+	</div>
+	
+{/block}

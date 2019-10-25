@@ -1,0 +1,6 @@
+{extend name="layout" /}
+{block name="content"}
+	<div class="alert alert-success">
+		你好 {$admin->username}, 你最近一次登录的 ip 是 {$admin->last_login_ip}, 登录时间是 {$admin->last_login_time}
+	</div>
+{/block}

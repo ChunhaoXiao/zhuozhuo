@@ -1,0 +1,158 @@
+.top-header{
+	font-size: 14px;
+	height: 35px;
+	line-height: 35px;
+	color: white;
+}
+
+.banner{
+	height: 500px;
+	margin-top: 25px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-bottom: 40px;
+}
+
+.logo {
+	/*width: 150px;
+	height: 80px;*/
+}
+
+.active-menu{
+
+}
+
+.love-box{
+	width: 310px;
+	height: 280px;
+	border:3px solid white;
+}
+
+.mark{
+	width: 50px;
+	border-bottom: 3px solid #B2894B;
+	margin: auto;
+	padding: 0;
+}
+
+.item-inactive{
+	width: 160px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 1rem;
+	font-weight: 600;
+	border-radius: 2px;
+}
+
+.link-button{
+	width: 160px;
+	height: 50px;
+	background: #B2894B;
+	color: white;
+	text-align: center;
+	line-height: 50px;
+	font-size: 1rem;
+	font-weight: 600;
+	border-radius: 2px;
+}
+
+.footer {
+	
+	margin-top: 80px;
+	padding-top: 60px; 
+	padding-left: 0;
+	padding-right: 0; 
+}
+
+.message-input{
+	background: #444444;
+	border: 0
+}
+
+.message-label{
+	color: #827C74;
+	font-weight: 600;
+}
+
+.footer-contact{
+	font-size: 14px;
+}
+.footer-line{
+	height: 50px;
+	border-bottom: 2px solid #444444;
+	width: 100%;
+}
+
+.message-submit{
+	height:45px;
+	line-height:45px;
+	margin-top:15px;
+	width:200px;
+	background:#B2894B;
+	padding: 0px;
+}
+
+.bread-line{
+	border-bottom: 1px solid #EEEEEE; 
+	width:70%;
+	height: 2px
+
+}
+.title-line {
+	width: 300px; 
+	height: 15px; 
+	border-bottom: 1px solid #B9B9B9; 
+	margin:auto;
+}
+
+.active-menus{
+	color:white;
+	font-weight: 600;
+	background: #B2894B;
+	border-radius: 2px;
+}
+
+.bg-summery{
+	background-color: #F5F5F5;
+	font-weight: 700;
+
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	
+}
+
+.pagination  li{
+	
+	width: 20px;
+	margin-left: 5px;
+	font-weight: 700;
+	color:#B2894B;
+}
+.pagination  li a {
+	color: grey;
+}
+
+.banner-link {
+	position: relative;
+	top:150px;
+	left: 250px;
+	/*font-weight: 700;
+	font-size: 16px;
+	//background-color: #B2894B;
+	color: white;
+	width: 150px;
+	height: 35px;
+	line-height: 35px;
+	display: block;
+	text-align: center;*/
+}
+
+
+.news-title {
+	color:#6C7077;
+	font-size: 16px;
+}

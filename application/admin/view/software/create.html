@@ -1,0 +1,91 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<form method="post" action="{:url('admin/software/save')}" enctype="multipart/form-data">
+
+		<div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">特性</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <select name="category_id" class="form-control">
+               	
+               	{foreach $features as $v}
+               		<option value="{$v->id}" {:isset($data) && $data->category_id == $v->id ? 'selected' : ''}>{$v->name}</option>
+               	{/foreach}
+               </select>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label class="form-control-label">首页说明</label>
+            </div>    
+            <div class="col-12 col-md-10">
+                <input type="text" name="note" class="form-control">
+            </div>
+            
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label class="form-control-label">首页图标</label>
+            </div>    
+            <div class="col-12 col-md-10">
+                <input type="file" name="icon" class="form-control-file">
+            </div>
+
+
+            
+        </div>
+        {if !empty($data->icon)}
+            <div class="form-group row">
+                <div class="col col-md-1">
+                <label class="form-control-label"></label>
+                </div> 
+                <div class="col-12 col-md-10">
+                    <img src="/uploads/{$data->icon}" width="50" height="50">
+                </div>
+            </div>
+                
+        {/if}
+
+		<div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">内容</label>
+            </div>
+            <div class="col-12 col-md-10">
+                <textarea name="description" id="textarea-input" rows="9" placeholder=输入内容 class="form-control">{$data->description??''}</textarea>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">上传图片</label>
+            </div>
+            <div class="col-12 col-md-10">
+                <input type="file" name="picture" class="form-control-file">
+            </div>
+        </div>
+        
+
+         {if !empty($data->picture)}
+            <div class="form-group row">
+                <div class="col col-md-1">
+                <label class="form-control-label"></label>
+                </div> 
+                <div class="col-12 col-md-10">
+                    <img src="/uploads/{$data->picture}" width="80" height="80">
+                </div>
+            </div>   
+        {/if}
+
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class="form-control-label"></label>
+            </div>
+            <div class="col-12 col-md-10">
+               <button class="btn btn-info">确定</button>
+            </div>
+        </div>
+	</form>
+{/block}

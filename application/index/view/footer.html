@@ -1,0 +1,102 @@
+<div class="container-fluid bg-dark footer">
+	<h3 class="text-center text-white">在线留言</h3>
+	<div class="mark"></div>
+	<form class="w-100 mt-5" id="message_form" method="post">
+		<div class="row w-75 mx-auto">
+			<div class="col">
+				<div class="form-group">
+					<label class="message-label">你的姓名</label>
+					<input type="text" name="name" class="form-control message-input">
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="form-group">
+					<label class="message-label">电话号码</label>
+					<input type="text" name="phone" class="form-control message-input">
+				</div>
+			</div>
+		</div>
+		<div class="row w-75 mx-auto">
+			<div class="col">
+				<div class="form-group">
+					<label class="message-label">邮箱地址</label>
+					<input type="text" name="email" class="form-control message-input">
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="form-group">
+					<label class="message-label">留言内容</label>
+					<input type="text" name="content" class="form-control message-input">
+				</div>
+			</div>
+		</div>
+		<div class="alert border w-75 mx-auto alert-danger d-none" id="error_msg"></div>
+		<div class="w-75 mx-auto pl-3">
+			<button class="message-submit border-0 text-white"  id="message_submit">提交</button>
+		</div>
+    </form>
+    <div class="footer-line"></div>
+
+    <div class="w-75 mt-4 mx-auto p-3 message-label footer-contact">
+    	{if !empty(cache('contact'))}
+	    	<div class="d-flex flex-row justify-content-around" style="width: 35%">
+	    		
+		    		{foreach ['hot_line' => '咨询热线', 'online_chat' => '客服QQ', 'name' => '联系人'] as $k => $v}
+		    			{if cache('contact')[$k]}
+		    			    <div>{$v}:{:cache('contact')[$k]}</div>
+		    			{/if}
+		    		{/foreach}
+	    		
+	    	</div>
+
+	    	<div class="d-flex flex-row p-3 justify-content-between" style="width: 65%">
+	    		<div>公司地址:{:cache('contact')['address']}</div>
+	    		<div>版权所有@copyright</div>
+	    		<div>备案号：{$config.approve_number}</div>
+	    	</div>
+    	{/if}
+    </div>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+
+		$("#message_form input").on('focus', function(){
+			$("#error_msg").addClass('d-none').removeClass('d-block');
+			$("#message_submit").attr('disabled', false);
+		});
+
+		$("#message_submit").on('click', function(e){
+			//$(e).preventDefault();
+			$(this).attr('disabled', true);
+			let datas = $("#message_form").serialize();
+			$.ajax({
+				url:"{:url('index/message/save')}",
+				data:datas,
+				type:'post',
+				success:function(res)
+				{
+					//$("#error_msg").html(res.message).addClass('d-block').removeClass('d-none');
+					if(res.status)
+					{
+						$("#error_msg").html(res.message).addClass('d-block alert-danger').removeClass('d-none alert-success');
+					}
+					else
+					{
+						$("#error_msg").html(res.message).addClass('d-block alert-success').removeClass('d-none alert-danger');
+						setTimeout(function(){
+							$("#error_msg").addClass('d-none').removeClass('d-block');
+							$("#message_submit").attr('disabled', false)
+							$("#message_form input").val('')
+					}, 2000)
+					}
+					//console.log(res);
+				}
+			});
+			return false;
+		})
+	})
+</script>

@@ -1,0 +1,76 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<form method="post" action="{:url('admin/config/save')}" enctype="multipart/form-data">
+
+		
+        {foreach :config('configoptions.') as $k => $v}
+    		<div class="row form-group">
+                <div class="col col-md-2">
+                    <label for="textarea-input" class=" form-control-label">{$v['label']}</label>
+                </div>
+                <div class="col-12 col-md-10">
+                    {if $v['type'] == 'text'}
+                        <input type="text" name="{$k}" class="form-control" value="{$data->$k}">
+
+                    {elseif $v['type'] == 'textarea' /}
+                        <textarea class="form-control" name="{$k}" rows="5"></textarea>
+                    {elseif $v['type'] == 'file' /}
+                        <input type="file" class="form-file-control" {if !empty($v['multiple'])} multiple name="{$k}[]" {else /} name="{$k}" {/if}>
+
+                        {if !empty($data->$k)}
+                            {if(is_array($data->$k))}
+                                <div class="d-flex">
+                                {foreach $data->$k as $pic}
+                                    
+                                        <div>
+                                            <img src="/uploads/{$pic}" width="50" height="50" class="img-thumbnail">
+                                            <input type="hidden" name="old_{$k}[]" value="{$pic}">
+                                        </div>
+                                {/foreach}
+                                </div>
+                            {else /}
+                                <img src="/uploads/{$data->$k}" width="50" height="50">
+                            {/if}
+                        {/if}
+
+                    {elseif $v['type'] == 'radio' /}
+
+                        {foreach $v['options'] as $f => $v1}
+
+                            <input type="radio" name="{$k}" value="{$f}" checked="{$v['checked'] == $f}"> {$v1}
+
+                        {/foreach}
+                    {/if}
+                </div>
+            </div>
+        {/foreach}
+        
+        <div class="row form-group">
+            <div class="col col-md-2">
+                <label for="textarea-input" class="form-control-label"></label>
+            </div>
+            <div class="col-12 col-md-10">
+               <button class="btn btn-info">确定</button>
+            </div>
+        </div>
+
+	</form>
+
+    {if session('success')} 
+        <div class="row offset-md-2">
+            <div class="col-10 alert alert-success">
+                操作成功
+            </div>
+        </div>
+    {/if}
+
+    <script type="text/javascript">
+        $(function(){
+            $(".img-thumbnail").on('click', function(){
+                $(this).parent().remove();
+            })
+        })
+    </script>
+
+{/block}

@@ -1,0 +1,27 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		{include file="includes/breadcrumb" bread="$bread" /}
+	
+		<h3 class="text-center mt-3">新闻资讯</h3>
+		<div class="title-line"></div>
+		<div class="w-50 mx-auto d-flex flex-row justify-content-around mt-5">
+			{foreach $categories as $v}
+				<a href="{:url('index/news/index', ['category' => $v->id])}"  class="item-inactive {if $v->id == $category_id} link-button{/if}">{$v->name}</a>
+			{/foreach}
+		</div>
+
+		<div class="mt-4">
+			{foreach $datas as $v}
+				<div class="font-weight-bold"><a href="{:url('index/news/read', ['id' => $v->id])}">{$v->title}</a></div>
+				<div>{$v->create_time}</div>
+				<div>{$v->summery}</div>
+				<div style="height: 15px;border-bottom: 1px solid #EEEEEE;margin-bottom: 10px"></div>
+			{/foreach}
+		</div>
+		<div class="text-center mt-4" id="paginator">
+			{$datas|raw}
+		</div>
+	</div>
+{/block}

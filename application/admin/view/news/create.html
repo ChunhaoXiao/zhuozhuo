@@ -1,0 +1,111 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<form method="post" {if empty($data)} action="{:url('admin/news/save')}" {else /} action="{:url('admin/news/update', ['id' => $data->id])}" {/if} enctype="multipart/form-data">
+
+		<div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">分类</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <select name="category_id" class="form-control">
+               	
+                   	{foreach $cates as $v}
+                   		<option value="{$v->id}" {:isset($data) && $data->category_id == $v->id ? 'selected' : ''}>{$v->name}</option>
+                   	{/foreach}
+               </select>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">新闻标题</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <input type="text" name="title" class="form-control" value="{$data->title??''}"> 
+            </div>
+        </div>
+
+         <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">新闻来源</label>
+            </div>
+            <div class="col-12 col-md-10">
+               <input type="text" name="source" class="form-control" value="{$data->source??''}"> 
+            </div>
+        </div>
+
+		<div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">内容</label>
+            </div>
+            <div class="col-12 col-md-10" id="div3">
+                <p>{$data->content??''}</p>
+                <!-- <textarea  name="container" id="">{$data->content??''}</textarea> -->
+                
+            </div>
+            <textarea hidden  name="content" id="content"></textarea>
+
+        </div>
+
+       <!--  <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class=" form-control-label">上传图片</label>
+            </div>
+            <div class="col-12 col-md-10">
+                <input type="file" name="picture" class="form-control-file">
+            </div>
+        </div> -->
+        {if !empty($data->pictures)}
+        	<div class="row form-group">
+
+        		<div class="col-md-10 offset-md-1">
+	        		{foreach $data->pictures as $v}
+	        		    <img src="/uploads/{$v}" width="100" height="100">
+	        		{/foreach}
+        	    </div>
+        	</div>
+        {/if}
+        <div class="row form-group">
+            <div class="col col-md-1">
+                <label for="textarea-input" class="form-control-label"></label>
+            </div>
+            <div class="col-12 col-md-10">
+               <button class="btn btn-info" id="submit">确定</button>
+            </div>
+        </div>
+	</form>
+
+    <!-- <script type="text/javascript">
+        $(function(){
+            $("#content").summernote({
+                height:300
+            });
+        })
+    </script> -->
+   <script type="text/javascript" src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js
+"></script> 
+
+<script type="text/javascript">
+    $(function(){
+        var E = window.wangEditor
+        var editor2 = new E('#div3')
+        editor2.create()
+        
+
+        $("#submit").on('click', function(e){
+           let content = editor2.txt.html()
+           $("#content").val(content);
+        })
+
+
+    })
+    
+</script>
+
+    <!-- <script id="container" name="content" type="text/plain">
+        内容
+    </script> -->
+
+   
+{/block}

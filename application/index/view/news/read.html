@@ -1,0 +1,40 @@
+{extend name="layout" /}
+
+{block name="content"}
+	<div class="w-75 mx-auto">
+		{include file="includes/breadcrumb" bread="$bread_nav" /}
+
+		<h3 class="text-center mt-3">{$data->title}</h3>
+		<div class="d-flex flex-row w-75 mx-auto justify-content-center text-secondary">
+			<div class="p-2">来源:{$data->source}</div>
+			<div class="p-2">发布时间:{$data->create_time}</div>
+			<div class="p-2">浏览:{$data->view_count}次</div>
+			<div class="p-2">分享到:</div>
+
+				<div class="bshare-custom p-2">
+					<a title="分享到QQ空间" class="bshare-qzone"></a>
+					<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+					<a title="分享到人人网" class="bshare-renren"></a>
+					<a title="分享到腾讯微博" class="bshare-qqmb"></a>
+					<a title="分享到网易微博" class="bshare-neteasemb"></a>
+					<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+					<span class="BSHARE_COUNT bshare-share-count">0</span>
+				</div>
+					<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=b656ba13-8c07-4ce9-8881-6060f50ed2dc&amp;pophcol=2&amp;lang=zh"></script>
+					<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+
+			
+		</div>
+		<div class="bg-summery mx-auto p-1 align-middle">{$data->summery|raw}</div>
+
+		<div class="mt-4">
+			{$data->content|raw}
+		</div>
+		<div class="d-flex flex-column mt-4">
+			{$data->prev|raw}
+
+		    {$data->next|raw}
+		</div>
+		
+	</div>
+{/block}
